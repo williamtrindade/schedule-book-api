@@ -44,7 +44,7 @@ class AtividadeController extends Controller
                 'message'   => 'Record not found',
             ], 404);
         }
-        return response()->json(['data' => $atividade]);
+        return response()->json(['data' => $atividade], 200);
     }
 
     /**
@@ -62,7 +62,7 @@ class AtividadeController extends Controller
                 'message' => 'Record not found',
             ], 404);
         }
-        return response()->json(['data' => $atividade]);
+        return response()->json(['data' => $atividade], 200);
     }
 
     /**
@@ -75,7 +75,7 @@ class AtividadeController extends Controller
     public function update(StoreAtividade $request, AtividadeRespository $atividade, $id)
     {
         $atividade = $atividade->update($id, $request);        
-        return response()->json(['data' => $atividade]);
+        return response()->json(['data' => $atividade], 200);
     }
 
     /**
@@ -87,6 +87,6 @@ class AtividadeController extends Controller
     public function destroy(AtividadeRespository $atividade, $id)
     {
         $atividade = $atividade->destroy($id);
-        return response()->json(['data' => $atividade]);
+        return response()->json(['data' => $atividade], 200);
     }
 }
