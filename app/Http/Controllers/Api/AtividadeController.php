@@ -10,13 +10,13 @@ use App\Repositories\UserRepository;
 
 class AtividadeController extends Controller
 {
-
     /**
      * List
      */
-    public function index(AtividadeRespository $atividade)
+    public function index(AtividadeRespository $atividade, Request $request)
     {
-        return response()->json(['data' => $atividade->all()], 200);
+        $atividades = $atividade->get($request->api_token);       
+        return response()->json(['data' => $atividades], 200);
     }
 
     /**

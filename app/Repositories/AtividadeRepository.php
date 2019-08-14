@@ -2,9 +2,18 @@
 namespace App\Repositories;
 
 use App\Atividade;
+use App\User;
+use App\Repositories\UserRepository;
 
 class AtividadeRespository
 {
+    public function get($token)
+    {
+        $user = new UserRepository();
+        $user = $user->findByToken($token)->first();
+        return $user->atividades();
+    }
+
     public function store($atividadeData): Atividade
     {
         return Atividade::create($atividadeData);
