@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Repositories\AtividadeRespository;
 use App\Http\Requests\StoreAtividade;
+use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 
 class AtividadeController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * List
      */
     public function index(AtividadeRespository $atividade)
     {
@@ -19,10 +20,7 @@ class AtividadeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Store
      */
     public function store(StoreAtividade $request, AtividadeRespository $atividade)
     {
@@ -31,33 +29,18 @@ class AtividadeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Show
      */
-    public function show(AtividadeRespository $atividade, $id)
+    public function show(AtividadeRespository $atividade, UserRepository $user, $id, Request $request)
     {
+        $user = $user->findByToken($request->api_token);
         $atividade = $atividade->find($id);
         if(!$atividade) {
             return response()->json([
                 'message'   => 'Record not found',
             ], 404);
         }
-        return response()->json(['data' => $atividade], 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AtividadeRespository $atividade, $id)
-    {
-        $atividade = $atividade->find($id);
-
-        if(!$atividade) {
+        if($user != $atividade->user) {
             return response()->json([
                 'message' => 'Record not found',
             ], 404);
@@ -66,27 +49,43 @@ class AtividadeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+     * Update 
+     */  
     public function update(StoreAtividade $request, AtividadeRespository $atividade, $id)
     {
+        $user = $user->findByToken($request->apiToken);
+        $atividade = $atividade->find($id);
+        if(!$atividade) {
+            return response()->json([
+                'message'   => 'Record not found',
+            ], 404);
+        }
+        if($user != $atividade->user) {
+            return response()->json([
+                'message' => 'Server Error',
+            ], 500);
+        }
         $atividade = $atividade->update($id, $request);        
         return response()->json(['data' => $atividade], 200);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Destroy
      */
-    public function destroy(AtividadeRespository $atividade, $id)
+    public function destroy(AtividadeRespository $atividade, $apiToken, $id)
     {
+        $user = $user->findByToken($apiToken);
         $atividade = $atividade->destroy($id);
+        if(!$atividade) {
+            return response()->json([
+                'message'   => 'Record not found',
+            ], 404);
+        }
+        if($user != $atividade->user) {
+            return response()->json([
+                'message' => 'Server Error',
+            ], 500);
+        }
         return response()->json(['data' => $atividade], 200);
     }
 }

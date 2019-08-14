@@ -30,6 +30,8 @@ class StoreAtividade extends FormRequest
             'status' => 'required',
             'tituto' => 'required',
             'descricao' => 'required',
+            'user_id' => 'required',
+            'api_token' => 'required'
         ];
     }
 }
