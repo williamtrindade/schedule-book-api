@@ -2,43 +2,43 @@
 namespace App\Repositories;
 
 use App\Atividade;
-use App\User;
-use App\Repositories\UserRepository;
+use App\Repositories\Contracts\AtividadeRepositoryInterface;
 
-class AtividadeRespository
+class AtividadeRespository implements AtividadeRepositoryInterface
 {
-    public function get($token)
-    {
-        $user = new UserRepository();
-        $user = $user->findByToken($token)->first();
-        return $user->atividades();
+    private $model;
+
+    public function __construct(Atividade $model)
+	{
+        $this->model = $model;
     }
 
-    public function store($atividadeData): Atividade
+    public function store($data)
     {
-        return Atividade::create($atividadeData);
+        dd($data);
+        
+        return $this->model->create($data);
     }
 
     public function all()
     {
-        return Atividade::all();
+        return $this->model->all();
     }
 
     public function find($id)
     {
-        $atividade = Atividade::find($id);
-        return $atividade;
+        return $this->model->find($id);
     }
 
-    public function update($id, $request)
+    public function update($id, $data)
     {
-        $atividatde = Atividade::find($id);
-        $atividade::update($request);
+        $atividade = $this->model->find($id);
+        return $atividade->update($data);
     }
 
     public function destroy($id)
     {
-        $atividatde = Atividade::find($id);
-        $atividade::delete($request);
+        $atividatde = $this->model->find($id);
+        return $atividade->delete();
     }
 }

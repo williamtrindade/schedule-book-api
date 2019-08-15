@@ -26,12 +26,12 @@ class StoreAtividade extends FormRequest
         return [
             'data_de_inicio' => 'required|date',
             'data_de_prazo' => 'required|date',
-            'data_de_conclusao' => 'required|date',
+            'data_de_conclusao' => 'date',
             'status' => 'required',
             'tituto' => 'required',
             'descricao' => 'required',
             'user_id' => 'required',
-            'api_token' => 'required'
+            'api_token' => 'required',
         ];
     }
 }
