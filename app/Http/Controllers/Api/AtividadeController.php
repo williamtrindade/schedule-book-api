@@ -22,7 +22,7 @@ class AtividadeController extends Controller
     /**
      * List
      */
-    public function index(Request $request)
+    public function index(Request $request) 
     {
         $user = $this->atividade->findByToken($request->api_token);    
         $atividades = $user->atividades();
@@ -32,10 +32,13 @@ class AtividadeController extends Controller
     /**
      * Store
      */
-    public function store(StoreAtividade $request)
-    {
-        $atividade = $this->atividade->store($request);
-        return response()->json(['data' => $atividade], 201);
+    public function store(StoreAtividade $request) {
+        $data = $request->validated();
+        $atividade = $this->atividade->store($data);
+        if(!$atividade) {
+            return response()->json(['Server Error'], 500);
+        }
+        return response()->json(['data' => $data], 201);
     }
 
     /**

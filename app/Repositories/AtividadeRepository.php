@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use App\Atividade;
 use App\Repositories\Contracts\AtividadeRepositoryInterface;
 
@@ -14,9 +15,13 @@ class AtividadeRespository implements AtividadeRepositoryInterface
     }
 
     public function store($data)
-    {
-        dd($data);
-        
+    {        
+        $date = new Carbon($data['inicio']);
+        dd($date);
+        // Se algo terminar ou começar nesse range da data que usuário quer cadastrar
+        if($this->model->whereBetween('inicio', [$data['inicio'], $data['fim']])->get() || $this->model->whereBetween('fim', [$data['inicio'], $data['fim']])->get()) {
+            return NULL;
+        }
         return $this->model->create($data);
     }
 

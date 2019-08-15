@@ -9,7 +9,7 @@ class Atividade extends Model
     protected $table = 'atividades';
 
     protected $fillable = [
-        'inicio', 'fim', 'conclusao', 'status', 'tituto', 'descricao'
+        'inicio', 'fim', 'conclusao', 'status', 'titulo', 'descricao', 'user_id'
     ];
 
     public function user()

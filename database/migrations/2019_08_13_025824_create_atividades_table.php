@@ -15,11 +15,11 @@ class CreateAtividadesTable extends Migration
     {
         Schema::create('atividades', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('data_de_inicio');
-            $table->date('data_de_prazo');
-            $table->date('data_de_conclusao')->nullable();
+            $table->date('inicio');
+            $table->date('fim');
+            $table->date('conclusao')->nullable();
             $table->string('status');
-            $table->string('tituto');
+            $table->string('titulo');
             $table->string('descricao');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
