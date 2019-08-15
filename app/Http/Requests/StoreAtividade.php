@@ -24,9 +24,9 @@ class StoreAtividade extends FormRequest
     public function rules() : array
     {
         return [
-            'data_de_inicio' => 'required|date',
-            'data_de_prazo' => 'required|date',
-            'data_de_conclusao' => 'required|date',
+            'inicio' => 'required|date',
+            'fim' => 'required|date',
+            'conclusao' => 'required|date',
             'status' => 'required',
             'tituto' => 'required',
             'descricao' => 'required',
