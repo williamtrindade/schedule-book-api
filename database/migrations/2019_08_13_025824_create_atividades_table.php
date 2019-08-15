@@ -17,7 +17,7 @@ class CreateAtividadesTable extends Migration
             $table->bigIncrements('id');
             $table->date('data_de_inicio');
             $table->date('data_de_prazo');
-            $table->date('data_de_conclusao');
+            $table->date('data_de_conclusao')->nullable();
             $table->string('status');
             $table->string('tituto');
             $table->string('descricao');

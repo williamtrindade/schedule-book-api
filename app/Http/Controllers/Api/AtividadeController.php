@@ -10,31 +10,41 @@ use App\Repositories\UserRepository;
 
 class AtividadeController extends Controller
 {
+    private $atividade;
+    private $user;
+
+    public function __construct(AtividadeRespository $atividade, UserRepository $user)
+    {
+        $this->atividade = $atividade;
+        $this->user = $user;
+    }
+
     /**
      * List
      */
-    public function index(AtividadeRespository $atividade, Request $request)
+    public function index(Request $request)
     {
-        $atividades = $atividade->get($request->api_token);       
+        $user = $this->atividade->findByToken($request->api_token);    
+        $atividades = $user->atividades();
         return response()->json(['data' => $atividades], 200);
     }
 
     /**
      * Store
      */
-    public function store(StoreAtividade $request, AtividadeRespository $atividade)
+    public function store(StoreAtividade $request)
     {
-        $atividade = $atividade->store($request);
+        $atividade = $this->atividade->store($request);
         return response()->json(['data' => $atividade], 201);
     }
 
     /**
      * Show
      */
-    public function show(AtividadeRespository $atividade, UserRepository $user, $id, Request $request)
+    public function show($id, Request $request)
     {
-        $user = $user->findByToken($request->api_token);
-        $atividade = $atividade->find($id);
+        $user = $this->user->findByToken($request->api_token);
+        $atividade = $this->atividade->find($id);
         if(!$atividade) {
             return response()->json([
                 'message'   => 'Record not found',
@@ -51,10 +61,10 @@ class AtividadeController extends Controller
     /**
      * Update 
      */  
-    public function update(StoreAtividade $request, AtividadeRespository $atividade, $id)
+    public function update(StoreAtividade $request, $id)
     {
-        $user = $user->findByToken($request->apiToken);
-        $atividade = $atividade->find($id);
+        $user = $this->user->findByToken($request->apiToken);
+        $atividade = $this->atividade->find($id);
         if(!$atividade) {
             return response()->json([
                 'message'   => 'Record not found',
@@ -72,10 +82,10 @@ class AtividadeController extends Controller
     /**
      * Destroy
      */
-    public function destroy(AtividadeRespository $atividade, $apiToken, $id)
+    public function destroy($apiToken, $id)
     {
-        $user = $user->findByToken($apiToken);
-        $atividade = $atividade->destroy($id);
+        $user = $this->user->findByToken($apiToken);
+        $atividade = $this->atividade->destroy($id);
         if(!$atividade) {
             return response()->json([
                 'message'   => 'Record not found',
