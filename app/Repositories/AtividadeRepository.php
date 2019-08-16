@@ -16,12 +16,6 @@ class AtividadeRespository implements AtividadeRepositoryInterface
 
     public function store($data)
     {        
-        $date = new Carbon($data['inicio']);
-        dd($date);
-        // Se algo terminar ou começar nesse range da data que usuário quer cadastrar
-        if($this->model->whereBetween('inicio', [$data['inicio'], $data['fim']])->get() || $this->model->whereBetween('fim', [$data['inicio'], $data['fim']])->get()) {
-            return NULL;
-        }
         return $this->model->create($data);
     }
 
@@ -46,4 +40,15 @@ class AtividadeRespository implements AtividadeRepositoryInterface
         $atividatde = $this->model->find($id);
         return $atividade->delete();
     }
+
+    public function filter($id, $inicio, $fim) {
+        $atividades = $this->model->where([
+            ['user_id', '=', $id],
+            ['inicio', '>=', $inicio],
+            ['fim', '<=', $fim]
+        ])->get();
+
+        return $atividades;
+    }
+
 }

@@ -6,15 +6,15 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
-    private $user;
+    private $model;
 
-    public function __construct(User $user)
+    public function __construct(User $model)
     {
-        $this->user = $user;
+        $this->model = $model;
     }
 
     public function findByToken($token)
     {
-        return $this->user->where('api_token', $token);
+        return $this->model->where('api_token', $token);
     }
 }

@@ -19,4 +19,5 @@ Route::middleware('auth:api')->group(function() {
     });
 
     Route::resource('atividades', 'Api\AtividadeController', ['except' => ['create', 'edit']]);
+    Route::get('atividades/filter/{inicio}/{fim}', 'Api\FilterController@filter');
 });

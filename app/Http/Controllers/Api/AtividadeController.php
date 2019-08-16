@@ -24,8 +24,8 @@ class AtividadeController extends Controller
      */
     public function index(Request $request) 
     {
-        $user = $this->atividade->findByToken($request->api_token);    
-        $atividades = $user->atividades();
+        $user = $this->user->findByToken($request->api_token)->first();    
+        $atividades = $user->atividades;
         return response()->json(['data' => $atividades], 200);
     }
 
@@ -46,17 +46,17 @@ class AtividadeController extends Controller
      */
     public function show($id, Request $request)
     {
-        $user = $this->user->findByToken($request->api_token);
+        $user = $this->user->findByToken($request->api_token)->first();
         $atividade = $this->atividade->find($id);
         if(!$atividade) {
             return response()->json([
                 'message'   => 'Record not found',
             ], 404);
         }
-        if($user != $atividade->user) {
+        if($user->id != $atividade->user->id) {
             return response()->json([
-                'message' => 'Record not found',
-            ], 404);
+                'message' => 'Access denied',
+            ], 401);
         }
         return response()->json(['data' => $atividade], 200);
     }
@@ -64,41 +64,45 @@ class AtividadeController extends Controller
     /**
      * Update 
      */  
-    public function update(StoreAtividade $request, $id)
+    public function update($id, StoreAtividade $request)
     {
-        $user = $this->user->findByToken($request->apiToken);
+        $data = $request->validated();
+        $user = $this->user->findByToken($request->api_token)->first();
         $atividade = $this->atividade->find($id);
+
         if(!$atividade) {
             return response()->json([
                 'message'   => 'Record not found',
             ], 404);
         }
-        if($user != $atividade->user) {
+        if($user->id != $atividade->user->id) {
             return response()->json([
-                'message' => 'Server Error',
-            ], 500);
+                'message' => 'Access denied',
+            ], 401);
         }
-        $atividade = $atividade->update($id, $request);        
+        $atividade = $atividade->update($id, $data);        
         return response()->json(['data' => $atividade], 200);
     }
 
     /**
      * Destroy
      */
-    public function destroy($apiToken, $id)
+    public function destroy($id, Request $request)
     {
-        $user = $this->user->findByToken($apiToken);
-        $atividade = $this->atividade->destroy($id);
+        $user = $this->user->findByToken($request->api_token)->first();
+        $atividade = $this->atividade->find($id);
         if(!$atividade) {
             return response()->json([
                 'message'   => 'Record not found',
             ], 404);
         }
-        if($user != $atividade->user) {
+        if($user->id != $atividade->user->id) {
             return response()->json([
-                'message' => 'Server Error',
-            ], 500);
+                'message' => 'Access denied',
+            ], 401);
         }
+        $atividade = $atividade->destroy($id);   
         return response()->json(['data' => $atividade], 200);
     }
+
 }
