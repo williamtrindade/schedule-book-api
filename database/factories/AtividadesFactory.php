@@ -7,9 +7,9 @@ use Faker\Generator as Faker;
 use Carbon\Carbon;
 
 $factory->define(Atividade::class, function (Faker $faker) use ($factory) {
-    $year = rand(2009, 2016);
+    $year  = rand(2009, 2016);
     $month = rand(1, 12);
-    $day = rand(1, 28);
+    $day   = rand(1, 28);
 
     $date = Carbon::create($year,$month ,$day , 0, 0, 0);
     return [
