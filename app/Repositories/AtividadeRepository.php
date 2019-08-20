@@ -46,7 +46,7 @@ class AtividadeRepository implements AtividadeRepositoryInterface
      * @param $id
      * @return mixed
      */
-    public function find($id) : mixed
+    public function find($id)
     {
         return $this->model->find($id);
     }
@@ -56,7 +56,7 @@ class AtividadeRepository implements AtividadeRepositoryInterface
      * @param $data
      * @return mixed
      */
-    public function update($id, $data) : mixed
+    public function update($id, $data)
     {
         $atividade = $this->model->find($id);
         return $atividade->update($data);
@@ -66,7 +66,7 @@ class AtividadeRepository implements AtividadeRepositoryInterface
      * @param $id
      * @return mixed
      */
-    public function destroy($id): mixed
+    public function destroy($id)
     {
         $atividade = $this->model->find($id);
         return $atividade->delete();
@@ -78,7 +78,7 @@ class AtividadeRepository implements AtividadeRepositoryInterface
      * @param $fim
      * @return mixed
      */
-    public function filter($id, $inicio, $fim) : mixed
+    public function filter($id, $inicio, $fim)
     {
         $atividades = $this->model->where([
             ['user_id', '=', $id],

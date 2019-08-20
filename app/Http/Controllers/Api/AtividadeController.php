@@ -7,6 +7,7 @@ use App\Repositories\AtividadeRepository;
 use App\Http\Requests\StoreAtividade;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use App\Http\Validators\UserValidator;
 
 /**
  * Class AtividadeController
