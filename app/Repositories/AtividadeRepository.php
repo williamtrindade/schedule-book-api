@@ -5,10 +5,10 @@ use App\Atividade;
 use App\Repositories\Contracts\AtividadeRepositoryInterface;
 
 /**
- * Class AtividadeRespository
+ * Class AtividadeRepository
  * @package App\Repositories
  */
-class AtividadeRespository implements AtividadeRepositoryInterface
+class AtividadeRepository implements AtividadeRepositoryInterface
 {
     /**
      * @var Atividade
@@ -16,7 +16,7 @@ class AtividadeRespository implements AtividadeRepositoryInterface
     private $model;
 
     /**
-     * AtividadeRespository constructor.
+     * AtividadeRepository constructor.
      * @param Atividade $model
      */
     public function __construct(Atividade $model)

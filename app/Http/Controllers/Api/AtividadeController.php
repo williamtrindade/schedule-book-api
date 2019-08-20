@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Repositories\AtividadeRespository;
+use App\Repositories\AtividadeRepository;
 use App\Http\Requests\StoreAtividade;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
@@ -14,7 +14,7 @@ use App\Repositories\UserRepository;
 class AtividadeController extends Controller
 {
     /**
-     * @var AtividadeRespository
+     * @var AtividadeRepository
      */
     private $atividade;
     /**
@@ -26,10 +26,10 @@ class AtividadeController extends Controller
      * Make the dependency injection
      *
      * AtividadeController constructor.
-     * @param AtividadeRespository $atividade
+     * @param AtividadeRepository $atividade
      * @param UserRepository $user
      */
-    public function __construct(AtividadeRespository $atividade, UserRepository $user)
+    public function __construct(AtividadeRepository $atividade, UserRepository $user)
     {
         $this->atividade = $atividade;
         $this->user = $user;
