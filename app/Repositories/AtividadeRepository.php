@@ -1,46 +1,82 @@
 <?php
 namespace App\Repositories;
 
-use Carbon\Carbon;
 use App\Atividade;
 use App\Repositories\Contracts\AtividadeRepositoryInterface;
 
+/**
+ * Class AtividadeRespository
+ * @package App\Repositories
+ */
 class AtividadeRespository implements AtividadeRepositoryInterface
 {
+    /**
+     * @var Atividade
+     */
     private $model;
 
+    /**
+     * AtividadeRespository constructor.
+     * @param Atividade $model
+     */
     public function __construct(Atividade $model)
 	{
         $this->model = $model;
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function store($data)
-    {        
+    {
         return $this->model->create($data);
     }
 
+    /**
+     * @return Atividade[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function all()
     {
         return $this->model->all();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function find($id)
     {
         return $this->model->find($id);
     }
 
+    /**
+     * @param $id
+     * @param $data
+     * @return mixed
+     */
     public function update($id, $data)
     {
         $atividade = $this->model->find($id);
         return $atividade->update($data);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function destroy($id)
     {
-        $atividatde = $this->model->find($id);
+        $atividade = $this->model->find($id);
         return $atividade->delete();
     }
 
+    /**
+     * @param $id
+     * @param $inicio
+     * @param $fim
+     * @return mixed
+     */
     public function filter($id, $inicio, $fim) {
         $atividades = $this->model->where([
             ['user_id', '=', $id],
@@ -50,5 +86,4 @@ class AtividadeRespository implements AtividadeRepositoryInterface
 
         return $atividades;
     }
-
 }

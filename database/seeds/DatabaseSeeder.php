@@ -3,6 +3,9 @@
 use Illuminate\Database\Seeder;
 use App\user;
 
+/**
+ * Class DatabaseSeeder
+ */
 class DatabaseSeeder extends Seeder
 {
     /**

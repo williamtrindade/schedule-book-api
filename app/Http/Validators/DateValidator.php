@@ -4,13 +4,36 @@ namespace App\Http\Validators;
 use Carbon\Carbon;
 use App\Atividade;
 
+/**
+ * Class DateValidator
+ * @package App\Http\Validators
+ */
 class DateValidator
 {
+    /**
+     * @var Atividade
+     */
     private $model;
+    /**
+     * @var
+     */
     private $inicio;
+    /**
+     * @var
+     */
     private $fim;
+    /**
+     * @var
+     */
     private $conclusao;
 
+
+    /**
+     * DateValidator constructor.
+     * @param $inicio
+     * @param $fim
+     * @param $conclusao
+     */
     public function __construct($inicio, $fim, $conclusao)
     {
         $this->model     = new Atividade();
@@ -19,6 +42,12 @@ class DateValidator
         $this->conclusao = $conclusao;
     }
 
+    /**
+     * Verify if the date is over a weekend
+     *
+     * @return bool
+     * @throws \Exception
+     */
     public function validateWeekend() : bool
     {
         $inicio = new Carbon($this->inicio);
@@ -34,10 +63,15 @@ class DateValidator
             }
         } else {
             return false;
-        }   
-        return true;    
+        }
+        return true;
     }
 
+    /**
+     * Verify if the date is over other date in user calendar
+     *
+     * @return bool
+     */
     public function dateOverlay() : bool
     {
         // Se algo terminar ou começar nesse range da data que usuário quer cadastrar

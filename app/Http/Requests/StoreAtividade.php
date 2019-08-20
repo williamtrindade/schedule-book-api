@@ -5,6 +5,10 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Validators\DateValidator;
 
+/**
+ * Class StoreAtividade
+ * @package App\Http\Requests
+ */
 class StoreAtividade extends FormRequest
 {
     /**
@@ -34,6 +38,11 @@ class StoreAtividade extends FormRequest
         ];
     }
 
+    /**
+     * Get The Validator Instance
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
     public function getValidatorInstance()
     {
         $validator = parent::getValidatorInstance();
@@ -50,5 +59,5 @@ class StoreAtividade extends FormRequest
             }
         });
         return $validator;
-    } 
+    }
 }

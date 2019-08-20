@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
@@ -8,11 +7,26 @@ use App\Http\Requests\StoreAtividade;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 
+/**
+ * Class AtividadeController
+ * @package App\Http\Controllers\Api
+ */
 class AtividadeController extends Controller
 {
+    /**
+     * @var AtividadeRespository
+     */
     private $atividade;
+    /**
+     * @var UserRepository
+     */
     private $user;
 
+    /**
+     * AtividadeController constructor.
+     * @param AtividadeRespository $atividade
+     * @param UserRepository $user
+     */
     public function __construct(AtividadeRespository $atividade, UserRepository $user)
     {
         $this->atividade = $atividade;
@@ -20,17 +34,19 @@ class AtividadeController extends Controller
     }
 
     /**
-     * List
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request) 
+    public function index(Request $request)
     {
-        $user = $this->user->findByToken($request->api_token)->first();    
+        $user = $this->user->findByToken($request->api_token)->first();
         $atividades = $user->atividades;
         return response()->json(['data' => $atividades], 200);
     }
 
     /**
-     * Store
+     * @param StoreAtividade $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreAtividade $request) {
         $data = $request->validated();
@@ -42,7 +58,9 @@ class AtividadeController extends Controller
     }
 
     /**
-     * Show
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id, Request $request)
     {
@@ -62,8 +80,10 @@ class AtividadeController extends Controller
     }
 
     /**
-     * Update 
-     */  
+     * @param $id
+     * @param StoreAtividade $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update($id, StoreAtividade $request)
     {
         $data = $request->validated();
@@ -80,12 +100,14 @@ class AtividadeController extends Controller
                 'message' => 'Access denied',
             ], 401);
         }
-        $atividade = $atividade->update($id, $data);        
+        $atividade = $atividade->update($id, $data);
         return response()->json(['data' => $atividade], 200);
     }
 
     /**
-     * Destroy
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id, Request $request)
     {
@@ -101,7 +123,7 @@ class AtividadeController extends Controller
                 'message' => 'Access denied',
             ], 401);
         }
-        $atividade = $atividade->destroy($id);   
+        $atividade = $atividade->destroy($id);
         return response()->json(['data' => $atividade], 200);
     }
 
