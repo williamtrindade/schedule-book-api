@@ -23,6 +23,8 @@ class AtividadeController extends Controller
     private $user;
 
     /**
+     * Make the dependency injection
+     *
      * AtividadeController constructor.
      * @param AtividadeRespository $atividade
      * @param UserRepository $user
