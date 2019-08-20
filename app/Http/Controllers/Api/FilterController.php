@@ -32,7 +32,7 @@ class FilterController extends Controller
     public function __construct(AtividadeRepository $atividade, UserRepository $user)
     {
         $this->atividade = $atividade;
-        $this->user = $user;
+        $this->user      = $user;
     }
 
     /**

@@ -27,9 +27,9 @@ class DateValidator
      */
     private $conclusao;
 
-
     /**
      * DateValidator constructor.
+     *
      * @param $inicio
      * @param $fim
      * @param $conclusao
@@ -50,6 +50,7 @@ class DateValidator
      */
     public function validateWeekend() : bool
     {
+        /** @var Carbon $inicio */
         $inicio = new Carbon($this->inicio);
         $fim = new Carbon($this->fim);
         if($inicio <= $fim) {

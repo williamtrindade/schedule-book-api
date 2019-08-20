@@ -52,7 +52,8 @@ class AtividadeController extends Controller
      * @param StoreAtividade $request
      * @return JsonResponse
      */
-    public function store(StoreAtividade $request) {
+    public function store(StoreAtividade $request)
+    {
         $data = $request->validated();
         $atividade = $this->atividade->store($data);
         if(!$atividade) {
@@ -130,5 +131,4 @@ class AtividadeController extends Controller
         $atividade = $atividade->destroy($id);
         return response()->json(['data' => $atividade], 200);
     }
-
 }

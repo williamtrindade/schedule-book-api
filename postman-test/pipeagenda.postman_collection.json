@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "8f10c160-df20-4dbb-bddc-a2d653bdeca1",
+		"name": "pipeagenda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "inicio",
+							"value": "2019-08-19",
+							"type": "text"
+						},
+						{
+							"key": "fim",
+							"value": "2019-08-23",
+							"type": "text"
+						},
+						{
+							"key": "conclusao",
+							"value": "2019-08-22",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "aberta",
+							"type": "text"
+						},
+						{
+							"key": "titulo",
+							"value": "eeeh",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "eee",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "21",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/atividades?api_token=79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"atividades"
+					],
+					"query": [
+						{
+							"key": "api_token",
+							"value": "79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT"
+						}
+					]
+				},
+				"description": "Retorna o Usuário que fez a Request"
+			},
+			"response": []
+		},
+		{
+			"name": "store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "inicio",
+							"value": "2019-08-19",
+							"type": "text"
+						},
+						{
+							"key": "fim",
+							"value": "2019-08-23",
+							"type": "text"
+						},
+						{
+							"key": "conclusao",
+							"value": "2019-08-22",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "aberta",
+							"type": "text"
+						},
+						{
+							"key": "titulo",
+							"value": "eeeh",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "eee",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "21",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/atividades?api_token=79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"atividades"
+					],
+					"query": [
+						{
+							"key": "api_token",
+							"value": "79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000/api/atividades/22?api_token=79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"atividades",
+						"22"
+					],
+					"query": [
+						{
+							"key": "api_token",
+							"value": "79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inicio",
+							"value": "2019-09-22",
+							"type": "text"
+						},
+						{
+							"key": "fim",
+							"value": "2019-09-16",
+							"type": "text"
+						},
+						{
+							"key": "conclusao",
+							"value": "null",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "aberta",
+							"type": "text"
+						},
+						{
+							"key": "titulo",
+							"value": "dsd",
+							"type": "text"
+						},
+						{
+							"key": "descricao",
+							"value": "dsd",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "22",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/atividades/22?api_token=79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"atividades",
+						"22"
+					],
+					"query": [
+						{
+							"key": "api_token",
+							"value": "79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000/api/atividades/22?api_token=79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"atividades",
+						"22"
+					],
+					"query": [
+						{
+							"key": "api_token",
+							"value": "79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000/api/atividades/filter/2019-08-12/2019-08-30?api_token=79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"atividades",
+						"filter",
+						"2019-08-12",
+						"2019-08-30"
+					],
+					"query": [
+						{
+							"key": "api_token",
+							"value": "79MSdwvQRI5tMrhdyvE8zAgyHZl9wGWpESRtFGbNYjo3uns7PLysW1fbxpLT"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Atividade;
 use App\Repositories\Contracts\AtividadeRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class AtividadeRepository
@@ -34,9 +35,9 @@ class AtividadeRepository implements AtividadeRepositoryInterface
     }
 
     /**
-     * @return Atividade[]|\Illuminate\Database\Eloquent\Collection
+     * @return Atividade[]|Collection
      */
-    public function all()
+    public function all() : Collection
     {
         return $this->model->all();
     }
@@ -45,7 +46,7 @@ class AtividadeRepository implements AtividadeRepositoryInterface
      * @param $id
      * @return mixed
      */
-    public function find($id)
+    public function find($id) : mixed
     {
         return $this->model->find($id);
     }
@@ -55,7 +56,7 @@ class AtividadeRepository implements AtividadeRepositoryInterface
      * @param $data
      * @return mixed
      */
-    public function update($id, $data)
+    public function update($id, $data) : mixed
     {
         $atividade = $this->model->find($id);
         return $atividade->update($data);
@@ -65,7 +66,7 @@ class AtividadeRepository implements AtividadeRepositoryInterface
      * @param $id
      * @return mixed
      */
-    public function destroy($id)
+    public function destroy($id): mixed
     {
         $atividade = $this->model->find($id);
         return $atividade->delete();
@@ -77,13 +78,13 @@ class AtividadeRepository implements AtividadeRepositoryInterface
      * @param $fim
      * @return mixed
      */
-    public function filter($id, $inicio, $fim) {
+    public function filter($id, $inicio, $fim) : mixed
+    {
         $atividades = $this->model->where([
             ['user_id', '=', $id],
             ['inicio', '>=', $inicio],
             ['fim', '<=', $fim]
         ])->get();
-
         return $atividades;
     }
 }
