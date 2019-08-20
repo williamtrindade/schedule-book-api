@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Repositories\AtividadeRepository;
 use App\Http\Requests\StoreAtividade;
@@ -17,6 +18,7 @@ class AtividadeController extends Controller
      * @var AtividadeRepository
      */
     private $atividade;
+
     /**
      * @var UserRepository
      */
@@ -37,7 +39,7 @@ class AtividadeController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index(Request $request)
     {
@@ -48,7 +50,7 @@ class AtividadeController extends Controller
 
     /**
      * @param StoreAtividade $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreAtividade $request) {
         $data = $request->validated();
@@ -62,7 +64,7 @@ class AtividadeController extends Controller
     /**
      * @param $id
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function show($id, Request $request)
     {
@@ -84,7 +86,7 @@ class AtividadeController extends Controller
     /**
      * @param $id
      * @param StoreAtividade $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update($id, StoreAtividade $request)
     {
@@ -109,7 +111,7 @@ class AtividadeController extends Controller
     /**
      * @param $id
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function destroy($id, Request $request)
     {

@@ -25,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     * @param $token
+     * @param int $token
      * @return mixed
      */
     public function findByToken($token)

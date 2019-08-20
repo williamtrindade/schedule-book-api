@@ -17,6 +17,7 @@ class FilterController extends Controller
      * @var AtividadeRepository
      */
     private $atividade;
+
     /**
      * @var UserRepository
      */
