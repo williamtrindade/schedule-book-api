@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Repositories\AtividadeRepository;
 use App\Http\Controllers\Controller;
@@ -38,9 +39,9 @@ class FilterController extends Controller
      * Filter between a date range
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function filter(Request $request)
+    public function index(Request $request)
     {
         $user = $this->user->findByToken($request->api_token)->first();
         $atividades = $this->atividade->filter($user->id, $request->inicio, $request->fim);
