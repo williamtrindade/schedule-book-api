@@ -72,12 +72,12 @@ class AtividadeController extends Controller
     {
         $user = $this->user->findByToken($request->api_token)->first();
         $atividade = $this->atividade->find($id);
-        if(!$atividade) {
+        if (!$atividade) {
             return response()->json([
                 'message'   => 'Record not found',
             ], 404);
         }
-        if($user->id != $atividade->user->id) {
+        if ($user->id != $atividade->user->id) {
             return response()->json([
                 'message' => 'Access denied',
             ], 401);

@@ -26,6 +26,7 @@ class FilterController extends Controller
 
     /**
      * FilterController constructor.
+     * 
      * @param AtividadeRepository $atividade
      * @param UserRepository $user
      */
