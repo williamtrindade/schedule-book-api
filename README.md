@@ -1,2 +1,2 @@
-# pipe-agenda
-Agenda feita com API REST em Laravel 5.8
+# schedule-book-api
+Laravel schedule book API.
